@@ -31,3 +31,15 @@ npx shadcn@latest add button
 <br/>
 
 [Doc](https://ui.shadcn.com/docs/installation/vite)
+
+## Setup Clerk Auth
+
+- Install @clerk/clerk-react
+```npm install @clerk/clerk-react```
+- Set your environment variables
+```VITE_CLERK_PUBLISHABLE_KEY=...```
+- Import the Clerk Publishable Key
+- Add ClerkProvider to your app
+-
+
+[Doc](https://dashboard.clerk.com/apps/app_2pg2Cpsn8h6Ihj0gcenvujcGxh6/instances/ins_2pg2CrENDJlhFlRqEGYK0vGfpaG)
