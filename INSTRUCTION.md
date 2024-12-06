@@ -43,3 +43,11 @@ npx shadcn@latest add button
 -
 
 [Doc](https://dashboard.clerk.com/apps/app_2pg2Cpsn8h6Ihj0gcenvujcGxh6/instances/ins_2pg2CrENDJlhFlRqEGYK0vGfpaG)
+
+# Backend
+
+## init
+npm init -y
+
+## add dependencies
+npm i express mongoose dotenv cloudinary cors @clerk/express socket.io
