@@ -9,9 +9,11 @@ import {
 
 const router = Router();
 
-router.get("/check",protectRoute, requireAdmin, checkAdmin);
+router.use(protectRoute, requireAdmin);
 
-router.post('/songs', protectRoute, requireAdmin, createSong);
+router.get('/check', checkAdmin);
+
+router.post('/songs', createSong);
 router.delete('/songs/:id', deleteSong);
 
 router.post('/albums', createAlbum);
