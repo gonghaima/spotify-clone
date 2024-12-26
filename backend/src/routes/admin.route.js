@@ -6,6 +6,7 @@ import {
   deleteSong,
   deleteAlbum,
 } from '../controller/admin.controller.js';
+import { protectRoute, requireAdmin } from "../middleware/auth.middleware.js";
 
 const router = Router();
 
