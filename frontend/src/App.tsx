@@ -8,7 +8,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/" element={<AuthCallbackPage />} />
+        <Route path="/auth-callback" element={<AuthCallbackPage />} />
       </Routes>
     </>
   );

@@ -1,12 +1,11 @@
-
 // Basic React component structure
+import Topbar from '@/components/Topbar';
 import React from 'react';
 
 const HomePage: React.FC = () => {
   return (
     <div>
-      <h1>Welcome</h1>
-      <p>This is a minimal homepage.</p>
+      <Topbar />
     </div>
   );
 };
