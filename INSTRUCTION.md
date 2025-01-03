@@ -51,3 +51,6 @@ npm init -y
 
 ## add dependencies
 npm i express mongoose dotenv cloudinary cors @clerk/express socket.io
+
+## add shadcn card
+npx shadcn@latest add card
