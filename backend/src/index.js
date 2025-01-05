@@ -11,6 +11,7 @@ import { connectDB } from './lib/db.js';
 import { clerkMiddleware } from '@clerk/express';
 import fileUpload from 'express-fileupload';
 import path from 'path';
+import cors from 'cors';
 
 dotenv.config();
 const __dirname = path.resolve();
@@ -19,9 +20,31 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use(express.json());
+app.use(
+  cors({
+    origin: 'http://localhost:3000',
+    credentials: true,
+  })
+);
+// app.use(cors({
+//   origin: ['http://localhost:3000', 'http://localhost:5000'],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+//   credentials: true
+// }));
 
+// app.use(
+//   cors({
+//     origin: '*',
+//     allowedHeaders: ['Content-Type', 'Accept', 'Authorization'],
+//     credentials: true,
+//     // ... other options ...
+//   })
+// );
+
+app.use(express.json());
 app.use(clerkMiddleware());
+
 app.use(
   fileUpload({
     useTempFiles: true,
