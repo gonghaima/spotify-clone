@@ -3,12 +3,12 @@ import { Route, Routes } from 'react-router-dom';
 import HomePage from './pages/home/HomePage';
 import AuthCallbackPage from './pages/auth-callback/AuthCallbackPage.tsx';
 import { AuthenticateWithRedirectCallback } from '@clerk/clerk-react';
+import MainLayout from './layout/MainLayout.tsx';
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<HomePage />} />
         <Route
           path="/sso-callback"
           element={
@@ -18,7 +18,10 @@ function App() {
           }
         />
         <Route path="/auth-callback" element={<AuthCallbackPage />} />
-      </Routes> 
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
+      </Routes>
     </>
   );
 }
