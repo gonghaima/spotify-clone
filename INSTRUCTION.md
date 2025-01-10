@@ -53,4 +53,5 @@ npm init -y
 npm i express mongoose dotenv cloudinary cors @clerk/express socket.io
 
 ## add shadcn card
-npx shadcn@latest add card
+npx shadcn@latest add card 
+npx shadcn@latest add scroll-area
