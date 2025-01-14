@@ -1,31 +1,31 @@
 import { axiosInstance } from "@/lib/axios";
-// import { Album, Song, Stats } from "@/types";
+import { Album, Song, Stats } from "@/types";
 // import toast from "react-hot-toast";
 import { create } from "zustand";
 
-// interface MusicStore {
-// 	songs: Song[];
-// 	albums: Album[];
-// 	isLoading: boolean;
-// 	error: string | null;
-// 	currentAlbum: Album | null;
-// 	featuredSongs: Song[];
-// 	madeForYouSongs: Song[];
-// 	trendingSongs: Song[];
-// 	stats: Stats;
+interface MusicStore {
+	songs: Song[];
+	albums: Album[];
+	isLoading: boolean;
+	error: string | null;
+	currentAlbum: Album | null;
+	featuredSongs: Song[];
+	madeForYouSongs: Song[];
+	trendingSongs: Song[];
+	stats: Stats;
 
-// 	fetchAlbums: () => Promise<void>;
-// 	fetchAlbumById: (id: string) => Promise<void>;
-// 	fetchFeaturedSongs: () => Promise<void>;
-// 	fetchMadeForYouSongs: () => Promise<void>;
-// 	fetchTrendingSongs: () => Promise<void>;
-// 	fetchStats: () => Promise<void>;
-// 	fetchSongs: () => Promise<void>;
-// 	deleteSong: (id: string) => Promise<void>;
-// 	deleteAlbum: (id: string) => Promise<void>;
-// }
+	fetchAlbums: () => Promise<void>;
+	// fetchAlbumById: (id: string) => Promise<void>;
+	// fetchFeaturedSongs: () => Promise<void>;
+	// fetchMadeForYouSongs: () => Promise<void>;
+	// fetchTrendingSongs: () => Promise<void>;
+	// fetchStats: () => Promise<void>;
+	// fetchSongs: () => Promise<void>;
+	// deleteSong: (id: string) => Promise<void>;
+	// deleteAlbum: (id: string) => Promise<void>;
+}
 
-export const useMusicStore = create((set) => ({
+export const useMusicStore = create<MusicStore>((set) => ({
 	albums: [],
 	songs: [],
 	isLoading: false,
