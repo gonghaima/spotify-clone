@@ -32,6 +32,7 @@ export const getAllAlbums = async (req, res, next) => {
 export const getAlbumById = async (req, res, next) => {
   try {
     const { albumId } = req.params;
+    console.log("🚀 ~ getAlbumById ~ albumId:", albumId)
 
     const album = await Album.findById(albumId).populate('songs');
 
