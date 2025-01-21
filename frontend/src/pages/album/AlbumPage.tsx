@@ -5,6 +5,12 @@ import { Clock, Play } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
+export const formatDuration = (seconds: number) => {
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = seconds % 60;
+  return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+};
+
 type Props = {};
 
 const AlbumPage = (props: Props) => {
@@ -22,7 +28,6 @@ const AlbumPage = (props: Props) => {
 
   const handlePlayAlbum = () => {
     // if (!currentAlbum) return;
-
     // const isCurrentAlbumPlaying = currentAlbum?.songs.some(
     //   (song) => song._id === currentSong?._id
     // );
@@ -150,7 +155,7 @@ const AlbumPage = (props: Props) => {
                           {song.createdAt.split('T')[0]}
                         </div>
                         <div className="flex items-center">
-                          {/* {formatDuration(song.duration)} */}
+                          {formatDuration(song.duration)}
                         </div>
                       </div>
                     );
