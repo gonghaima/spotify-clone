@@ -48,7 +48,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
       const response = await axiosInstance.get('/albums');
       set({ albums: response.data });
     } catch (error: any) {
-      set({ error: error.response.data.message });
+      set({ error: error?.response?.data?.message });
     } finally {
       set({ isLoading: false });
     }
@@ -59,7 +59,7 @@ export const useMusicStore = create<MusicStore>((set) => ({
       const response = await axiosInstance.get(`/albums/${id}`);
       set({ currentAlbum: response.data });
     } catch (error: any) {
-      set({ error: error.response.data.message });
+      set({ error: error.response?.data?.message });
     } finally {
       set({ isLoading: false });
     }

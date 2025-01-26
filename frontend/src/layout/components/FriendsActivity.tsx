@@ -1,12 +1,15 @@
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect } from 'react';
 import { useChatStore } from '@/stores/useChatStore';
 import { useUser } from '@clerk/clerk-react';
 import { HeadphonesIcon, Music, Users } from 'lucide-react';
+import { ScrollArea } from '@/components/ui/scroll-area';
 
 type Props = {};
 
 function FriendsActivity({}: Props) {
-  const { users, isLoading, error, fetchUsers } = useChatStore();
+  let { users, isLoading, error, fetchUsers } = useChatStore();
+  users = [{ _id: 'dsafsfd', clerkId: 'sdfadfa', fullName: 'Steven G', imageUrl: 'http://image.url' }];
   const { user } = useUser();
 
   useEffect(() => {
@@ -20,7 +23,64 @@ function FriendsActivity({}: Props) {
           <h2 className="font-semibold">What they're listening to</h2>
         </div>
       </div>
-      <LoginPrompt />
+      {!user && <LoginPrompt />}
+      <ScrollArea className="flex-1">
+        <div className="p-4 space-y-4">
+          {users.map((user) => {
+            // const activity = userActivities.get(user.clerkId);
+            // const isPlaying = activity && activity !== "Idle";
+            const isPlaying = false;
+            const onlineUsers = { has: (id: string) => true };
+
+            return (
+              <div
+                key={user._id}
+                className="cursor-pointer hover:bg-zinc-800/50 p-3 rounded-md transition-colors group"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="relative">
+                    <Avatar className="size-10 border border-zinc-800">
+                      <AvatarImage src={user.imageUrl} alt={user.fullName} />
+                      <AvatarFallback>
+                        {user?.fullName[0] || 'Steven'}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div
+                      className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-zinc-900 
+												${onlineUsers.has(user.clerkId) ? 'bg-green-500' : 'bg-zinc-500'}
+												`}
+                      aria-hidden="true"
+                    />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center gap-2">
+                      <span className="font-medium text-sm text-white">
+                        {user.fullName}
+                      </span>
+                      {isPlaying && (
+                        <Music className="size-3.5 text-emerald-400 shrink-0" />
+                      )}
+                    </div>
+
+                    {isPlaying ? null : (
+                      // <div className='mt-1'>
+                      // 	<div className='mt-1 text-sm text-white font-medium truncate'>
+                      // 		{activity.replace("Playing ", "").split(" by ")[0]}
+                      // 	</div>
+                      // 	<div className='text-xs text-zinc-400 truncate'>
+                      // 		{activity.split(" by ")[1]}
+                      // 	</div>
+                      // </div>
+                      <div className="mt-1 text-xs text-zinc-400">Idle</div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </ScrollArea>
     </div>
   );
 }
