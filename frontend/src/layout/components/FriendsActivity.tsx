@@ -9,11 +9,12 @@ type Props = {};
 
 function FriendsActivity({}: Props) {
   let { users, isLoading, error, fetchUsers } = useChatStore();
-  users = [{ _id: 'dsafsfd', clerkId: 'sdfadfa', fullName: 'Steven G', imageUrl: 'http://image.url' }];
   const { user } = useUser();
 
   useEffect(() => {
-    if (user) fetchUsers();
+    if (user) {
+      fetchUsers(user.id);
+    }
   }, [fetchUsers, user]);
   return (
     <div className="h-full bg-zinc-900 rounded-lg flex flex-col">
