@@ -14,7 +14,7 @@ interface ChatStore {
   messages: Message[];
   selectedUser: User | null;
 
-  fetchUsers: (userId: string) => Promise<void>;
+  fetchUsers: (user: any) => Promise<void>;
   // initSocket: (userId: string) => void;
   // disconnectSocket: () => void;
   // sendMessage: (receiverId: string, senderId: string, content: string) => void;
@@ -42,14 +42,12 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
   // setSelectedUser: (user) => set({ selectedUser: user }),
 
-  fetchUsers: async (userId: string) => {
+  fetchUsers: async (user) => {
     set({ isLoading: true, error: null });
     try {
-      console.log('getting users....');
-
       const response = await axiosInstance.get('/users', {
         headers: {
-          userId,
+          userId: user.userId,
         },
       });
       set({ users: response.data });

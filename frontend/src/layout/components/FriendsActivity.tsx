@@ -13,7 +13,7 @@ function FriendsActivity({}: Props) {
 
   useEffect(() => {
     if (user) {
-      fetchUsers(user.id);
+      fetchUsers(user);
     }
   }, [fetchUsers, user]);
   return (

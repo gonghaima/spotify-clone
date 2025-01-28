@@ -20,10 +20,10 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-app.use((req, res, next) => {
-  console.log(req.headers);
-  next();
-});
+// app.use((req, res, next) => {
+//   console.log(req.headers);
+//   next();
+// });
 
 app.use(
   cors({

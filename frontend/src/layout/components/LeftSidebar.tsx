@@ -17,7 +17,6 @@ const LeftSidebar = () => {
   //   const albums: object[] = [];
   //   const isLoading = true;
 
-  console.log({ albums });
   return (
     <div className="h-full flex flex-col gap-2">
       {/* Navigation menu */}
