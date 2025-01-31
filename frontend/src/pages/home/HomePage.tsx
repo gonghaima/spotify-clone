@@ -2,6 +2,7 @@
 import Topbar from '@/components/Topbar';
 import { useMusicStore } from '@/stores/useMusicStore';
 import React, { useEffect } from 'react';
+import FeaturedSection from './components/FeaturedSection';
 
 const HomePage: React.FC = () => {
   const {
@@ -30,6 +31,7 @@ const HomePage: React.FC = () => {
   return (
     <div>
       <Topbar />
+      <FeaturedSection />
     </div>
   );
 };
