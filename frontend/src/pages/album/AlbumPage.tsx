@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { useMusicStore } from '@/stores/useMusicStore';
+import { usePlayerStore } from "@/stores/usePlayerStore";
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { Clock, Play } from 'lucide-react';
 import React, { useEffect } from 'react';
@@ -17,6 +18,7 @@ const AlbumPage = (props: Props) => {
   const { albumId } = useParams();
   console.log('🚀 ~ AlbumPage ~ albumId:', albumId);
   const { fetchAlbumById, currentAlbum, isLoading } = useMusicStore();
+  const { currentSong, isPlaying, playAlbum, togglePlay } = usePlayerStore();
 
   useEffect(() => {
     if (albumId) fetchAlbumById(albumId);
@@ -27,15 +29,15 @@ const AlbumPage = (props: Props) => {
   if (isLoading) return null;
 
   const handlePlayAlbum = () => {
-    // if (!currentAlbum) return;
-    // const isCurrentAlbumPlaying = currentAlbum?.songs.some(
-    //   (song) => song._id === currentSong?._id
-    // );
-    // if (isCurrentAlbumPlaying) togglePlay();
-    // else {
-    //   // start playing the album from the beginning
-    //   playAlbum(currentAlbum?.songs, 0);
-    // }
+    if (!currentAlbum) return;
+    const isCurrentAlbumPlaying = currentAlbum?.songs.some(
+      (song) => song._id === currentSong?._id
+    );
+    if (isCurrentAlbumPlaying) togglePlay();
+    else {
+      // start playing the album from the beginning
+      playAlbum(currentAlbum?.songs, 0);
+    }
   };
 
   return (
@@ -81,15 +83,16 @@ const AlbumPage = (props: Props) => {
                 className="w-14 h-14 rounded-full bg-green-500 hover:bg-green-400 
                 hover:scale-105 transition-all"
               >
-                {/* {isPlaying &&
+                {isPlaying &&
                 currentAlbum?.songs.some(
                   (song) => song._id === currentSong?._id
                 ) ? (
-                  <Pause className="h-7 w-7 text-black" />
+                  // <Pause className="h-7 w-7 text-black" />
+                  'Pause'
                 ) : (
                   <Play className="h-7 w-7 text-black" />
-                )} */}
-                <Play className="h-7 w-7 text-black" />
+                )}
+                {/* <Play className="h-7 w-7 text-black" /> */}
               </Button>
             </div>
 
@@ -113,8 +116,7 @@ const AlbumPage = (props: Props) => {
               <div className="px-6">
                 <div className="space-y-2 py-4">
                   {currentAlbum?.songs.map((song, index) => {
-                    // const isCurrentSong = currentSong?._id === song._id;
-                    const isCurrentSong = false;
+                    const isCurrentSong = currentSong?._id === song._id;
                     const isPlaying = false;
                     return (
                       <div
