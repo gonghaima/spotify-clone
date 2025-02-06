@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { useMusicStore } from '@/stores/useMusicStore';
-import { usePlayerStore } from "@/stores/usePlayerStore";
+import { usePlayerStore } from '@/stores/usePlayerStore';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
 import { Clock, Play } from 'lucide-react';
 import React, { useEffect } from 'react';
@@ -38,6 +38,12 @@ const AlbumPage = (props: Props) => {
       // start playing the album from the beginning
       playAlbum(currentAlbum?.songs, 0);
     }
+  };
+
+  const handlePlaySong = (index: number) => {
+    if (!currentAlbum) return;
+
+    playAlbum(currentAlbum?.songs, index);
   };
 
   return (
@@ -121,7 +127,7 @@ const AlbumPage = (props: Props) => {
                     return (
                       <div
                         key={song._id}
-                        // onClick={() => handlePlaySong(index)}
+                        onClick={() => handlePlaySong(index)}
                         className={`grid grid-cols-[16px_4fr_2fr_1fr] gap-4 px-4 py-2 text-sm 
                     text-zinc-400 hover:bg-white/5 rounded-md group cursor-pointer
                     `}
