@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { useMusicStore } from '@/stores/useMusicStore';
 import { usePlayerStore } from '@/stores/usePlayerStore';
 import { ScrollArea } from '@radix-ui/react-scroll-area';
-import { Clock, Play } from 'lucide-react';
+import { Clock, Pause, Play } from 'lucide-react';
 import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -12,9 +12,7 @@ export const formatDuration = (seconds: number) => {
   return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
 };
 
-type Props = {};
-
-const AlbumPage = (props: Props) => {
+const AlbumPage = () => {
   const { albumId } = useParams();
   console.log('🚀 ~ AlbumPage ~ albumId:', albumId);
   const { fetchAlbumById, currentAlbum, isLoading } = useMusicStore();
@@ -22,13 +20,13 @@ const AlbumPage = (props: Props) => {
 
   useEffect(() => {
     if (albumId) fetchAlbumById(albumId);
-
     return () => {};
   }, [fetchAlbumById, albumId]);
 
   if (isLoading) return null;
 
   const handlePlayAlbum = () => {
+    console.log('🚀 ~ handlePlayAlbum ~ handlePlayAlbum:', handlePlayAlbum);
     if (!currentAlbum) return;
     const isCurrentAlbumPlaying = currentAlbum?.songs.some(
       (song) => song._id === currentSong?._id
@@ -41,6 +39,7 @@ const AlbumPage = (props: Props) => {
   };
 
   const handlePlaySong = (index: number) => {
+    console.log('🚀 ~ handlePlaySong ~ handlePlaySong:', handlePlaySong);
     if (!currentAlbum) return;
 
     playAlbum(currentAlbum?.songs, index);
@@ -93,8 +92,7 @@ const AlbumPage = (props: Props) => {
                 currentAlbum?.songs.some(
                   (song) => song._id === currentSong?._id
                 ) ? (
-                  // <Pause className="h-7 w-7 text-black" />
-                  'Pause'
+                  <Pause className="h-7 w-7 text-black" />
                 ) : (
                   <Play className="h-7 w-7 text-black" />
                 )}
