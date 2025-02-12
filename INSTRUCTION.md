@@ -20,13 +20,15 @@ npx tailwindcss init -p
 - Edit tsconfig.app.json file
 - Update vite.config.ts
 - Run the CLI
+
 ```shell
 npx shadcn@latest init
 ```
+
 ### Test Shadcn Install
+
 npx shadcn@latest add button
 <br/>
-
 
 <br/>
 
@@ -35,9 +37,9 @@ npx shadcn@latest add button
 ## Setup Clerk Auth
 
 - Install @clerk/clerk-react
-```npm install @clerk/clerk-react```
+  `npm install @clerk/clerk-react`
 - Set your environment variables
-```VITE_CLERK_PUBLISHABLE_KEY=...```
+  `VITE_CLERK_PUBLISHABLE_KEY=...`
 - Import the Clerk Publishable Key
 - Add ClerkProvider to your app
 -
@@ -47,11 +49,15 @@ npx shadcn@latest add button
 # Backend
 
 ## init
+
 npm init -y
 
 ## add dependencies
+
 npm i express mongoose dotenv cloudinary cors @clerk/express socket.io
 
 ## add shadcn card
-npx shadcn@latest add card 
+
+npx shadcn@latest add card
 npx shadcn@latest add scroll-area
+npx shadcn@latest add slider

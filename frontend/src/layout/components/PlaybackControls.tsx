@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button';
-// import { Slider } from "@/components/ui/slider";
+import { Slider } from '@/components/ui/slider';
 import { usePlayerStore } from '@/stores/usePlayerStore';
 import {
   Laptop2,
@@ -140,16 +140,15 @@ export const PlaybackControls = () => {
             <div className="text-xs text-zinc-400">
               {formatTime(currentTime)}
             </div>
-            Slider
-            {/* <Slider
-							value={[currentTime]}
-							max={duration || 100}
-							step={1}
-							className='w-full hover:cursor-grab active:cursor-grabbing'
-							onValueChange={handleSeek}
-						/> */}
+            <Slider
+              value={[currentTime]}
+              max={duration || 100}
+              step={1}
+              className="w-full hover:cursor-grab active:cursor-grabbing"
+              onValueChange={handleSeek}
+            />
             <div className="text-xs text-zinc-400">{formatTime(duration)}</div>
-          </div> 
+          </div>
         </div>
         {/* volume controls */}
         <div className="hidden sm:flex items-center gap-4 min-w-[180px] w-[30%] justify-end">
@@ -183,19 +182,18 @@ export const PlaybackControls = () => {
             >
               <Volume1 className="h-4 w-4" />
             </Button>
-            Slider
-            {/* <Slider
-							value={[volume]}
-							max={100}
-							step={1}
-							className='w-24 hover:cursor-grab active:cursor-grabbing'
-							onValueChange={(value) => {
-								setVolume(value[0]);
-								if (audioRef.current) {
-									audioRef.current.volume = value[0] / 100;
-								}
-							}}
-						/> */}
+            <Slider
+              value={[volume]}
+              max={100}
+              step={1}
+              className="w-24 hover:cursor-grab active:cursor-grabbing"
+              onValueChange={(value) => {
+                setVolume(value[0]);
+                if (audioRef.current) {
+                  audioRef.current.volume = value[0] / 100;
+                }
+              }}
+            />
           </div>
         </div>
       </div>
