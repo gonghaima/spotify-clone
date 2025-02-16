@@ -61,3 +61,4 @@ npm i express mongoose dotenv cloudinary cors @clerk/express socket.io
 npx shadcn@latest add card
 npx shadcn@latest add scroll-area
 npx shadcn@latest add slider
+npx shadcn@latest add tabs
