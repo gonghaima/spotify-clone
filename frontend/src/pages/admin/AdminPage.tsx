@@ -3,8 +3,8 @@ import Header from './components/Header';
 import DashboardStats from './components/DashboardStats';
 import { Album, Music } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-// import SongsTabContent from './components/SongsTabContent';
-// import AlbumsTabContent from './components/AlbumsTabContent';
+import SongsTabContent from './components/SongsTabContent';
+import AlbumsTabContent from './components/AlbumsTabContent';
 import { useEffect } from 'react';
 import { useMusicStore } from '@/stores/useMusicStore';
 
@@ -44,12 +44,12 @@ function AdminPage() {
             Albums
           </TabsTrigger>
         </TabsList>
-        {/* <TabsContent value="songs">
+        <TabsContent value="songs">
           <SongsTabContent />
         </TabsContent>
         <TabsContent value="albums">
           <AlbumsTabContent />
-        </TabsContent> */}
+        </TabsContent>
       </Tabs>
     </div>
   );
