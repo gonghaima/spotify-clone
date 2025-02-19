@@ -19,8 +19,8 @@ interface MusicStore {
   fetchFeaturedSongs: () => Promise<void>;
   fetchMadeForYouSongs: () => Promise<void>;
   fetchTrendingSongs: () => Promise<void>;
-  // fetchStats: () => Promise<void>;
-  // fetchSongs: () => Promise<void>;
+  fetchStats: () => Promise<void>;
+  fetchSongs: () => Promise<void>;
   // deleteSong: (id: string) => Promise<void>;
   // deleteAlbum: (id: string) => Promise<void>;
 }
@@ -41,6 +41,29 @@ export const useMusicStore = create<MusicStore>((set) => ({
     totalArtists: 0,
   },
 
+  fetchSongs: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/songs');
+      set({ songs: response.data });
+    } catch (error: any) {
+      set({ error: error.message });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
+
+  fetchStats: async () => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await axiosInstance.get('/stats');
+      set({ stats: response.data });
+    } catch (error: any) {
+      set({ error: error.message });
+    } finally {
+      set({ isLoading: false });
+    }
+  },
   fetchAlbums: async () => {
     set({ isLoading: true, error: null });
 
