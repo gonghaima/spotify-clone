@@ -62,3 +62,4 @@ npx shadcn@latest add card
 npx shadcn@latest add scroll-area
 npx shadcn@latest add slider
 npx shadcn@latest add tabs
+npx shadcn@latest add table
