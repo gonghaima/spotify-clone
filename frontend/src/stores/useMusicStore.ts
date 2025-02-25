@@ -1,6 +1,6 @@
 import { axiosInstance } from '@/lib/axios';
 import { Album, Song, Stats } from '@/types';
-// import toast from "react-hot-toast";
+import toast from "react-hot-toast";
 import { create } from 'zustand';
 
 interface MusicStore {
@@ -49,10 +49,10 @@ export const useMusicStore = create<MusicStore>((set) => ({
 			set((state) => ({
 				songs: state.songs.filter((song) => song._id !== id),
 			}));
-			// toast.success("Song deleted successfully");
+			toast.success("Song deleted successfully");
 		} catch (error: any) {
 			console.log("Error in deleteSong", error);
-			// toast.error("Error deleting song");
+			toast.error("Error deleting song");
 		} finally {
 			set({ isLoading: false });
 		}
