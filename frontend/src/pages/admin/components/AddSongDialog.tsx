@@ -9,7 +9,7 @@ import {
 	DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-// import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { axiosInstance } from "@/lib/axios";
 import { useMusicStore } from "@/stores/useMusicStore";
 import { Plus, Upload } from "lucide-react";
@@ -187,7 +187,7 @@ const AddSongDialog = () => {
 
 					<div className='space-y-2'>
 						<label className='text-sm font-medium'>Album (Optional)</label>
-						{/* <Select
+						<Select
 							value={newSong.album}
 							onValueChange={(value) => setNewSong({ ...newSong, album: value })}
 						>
@@ -202,7 +202,7 @@ const AddSongDialog = () => {
 									</SelectItem>
 								))}
 							</SelectContent>
-						</Select> */}
+						</Select>
 					</div>
 				</div>
 
