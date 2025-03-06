@@ -6,7 +6,7 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { Library } from 'lucide-react';
-// import AlbumsTable from './AlbumsTable';
+import AlbumsTable from './AlbumsTable';
 // import AddAlbumDialog from './AddAlbumDialog';
 
 const AlbumsTabContent = () => {
@@ -26,7 +26,7 @@ const AlbumsTabContent = () => {
       </CardHeader>
 
       <CardContent>
-        {/* <AlbumsTable /> */}
+        <AlbumsTable />
       </CardContent>
     </Card>
   );
