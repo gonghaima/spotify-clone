@@ -10,3 +10,5 @@ export const getAllUsers = async (req, res, next) => {
     next(error);
   }
 };
+
+export const getMessages = async (req, res, next) => {};

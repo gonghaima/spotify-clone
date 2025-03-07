@@ -12,6 +12,8 @@ import { clerkMiddleware } from '@clerk/express';
 import fileUpload from 'express-fileupload';
 import path from 'path';
 import cors from 'cors';
+import { createServer } from 'http';
+import { initializeSocket } from './lib/socket.js';
 
 dotenv.config();
 const __dirname = path.resolve();
@@ -19,6 +21,9 @@ const __dirname = path.resolve();
 const app = express();
 
 const PORT = process.env.PORT;
+
+const httpServer = createServer(app);
+initializeSocket(httpServer);
 
 // app.use((req, res, next) => {
 //   console.log(req.headers);
