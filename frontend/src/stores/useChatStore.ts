@@ -14,7 +14,7 @@ interface ChatStore {
   messages: Message[];
   selectedUser: User | null;
 
-  fetchUsers: (user: any) => Promise<void>;
+  fetchUsers: () => Promise<void>;
   initSocket: (userId: string) => void;
   disconnectSocket: () => void;
   sendMessage: (receiverId: string, senderId: string, content: string) => void;
@@ -23,11 +23,12 @@ interface ChatStore {
 }
 
 const baseURL =
-  import.meta.env.MODE === 'development' ? 'http://localhost:5000' : '/';
+  import.meta.env.MODE === 'development' ? 'http://localhost:5500' : '/';
 
 const socket = io(baseURL, {
   autoConnect: false, // only connect if user is authenticated
   withCredentials: true,
+  transports: ['websocket', 'polling'], // explicitly specify transports
 });
 
 export const useChatStore = create<ChatStore>((set, get) => ({
@@ -43,17 +44,13 @@ export const useChatStore = create<ChatStore>((set, get) => ({
 
   setSelectedUser: (user) => set({ selectedUser: user }),
 
-  fetchUsers: async (user) => {
+  fetchUsers: async () => {
     set({ isLoading: true, error: null });
     try {
-      const response = await axiosInstance.get('/users', {
-        headers: {
-          userId: user.userId,
-        },
-      });
+      const response = await axiosInstance.get('/users');
       set({ users: response.data });
     } catch (error: any) {
-      set({ error: error.response?.data?.message });
+      set({ error: error.response.data.message });
     } finally {
       set({ isLoading: false });
     }

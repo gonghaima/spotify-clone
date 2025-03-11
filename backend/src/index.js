@@ -22,9 +22,6 @@ const app = express();
 
 const PORT = process.env.PORT;
 
-const httpServer = createServer(app);
-initializeSocket(httpServer);
-
 // app.use((req, res, next) => {
 //   console.log(req.headers);
 //   next();
@@ -34,8 +31,6 @@ app.use(
   cors({
     origin: [
       'http://localhost:3000',
-      'http://localhost:5000',
-      'http://localhost:5500',
     ],
     credentials: true,
   })
@@ -58,6 +53,9 @@ app.use(
 
 app.use(express.json());
 // app.use(clerkMiddleware());
+
+const httpServer = createServer(app);
+initializeSocket(httpServer);
 
 app.use(
   fileUpload({
@@ -85,7 +83,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log('Server is running on port ' + PORT);
   connectDB();
 });
