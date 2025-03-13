@@ -26,7 +26,7 @@ function App() {
         <Route path="/admin" element={<AdminPage />} />
         <Route element={<MainLayout />}>
           <Route path="/" element={<HomePage />} />
-          <Route path="/cat" element={<ChatPage />} />
+          <Route path="/chat" element={<ChatPage />} />
           <Route path="/albums/:albumId" element={<AlbumPage />} />
         </Route>
       </Routes>
