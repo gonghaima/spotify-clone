@@ -3,7 +3,7 @@ import { useChatStore } from '@/stores/useChatStore';
 import { useUser } from '@clerk/clerk-react';
 import { useEffect } from 'react';
 import UsersList from './components/UsersList';
-// import ChatHeader from './components/ChatHeader';
+import ChatHeader from './components/ChatHeader';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
 // import MessageInput from './components/MessageInput';
@@ -39,7 +39,7 @@ const ChatPage = () => {
           {selectedUser ? (
             <>
               ChatHeader
-              {/* <ChatHeader /> */}
+              <ChatHeader />
               {/* Messages */}
               <ScrollArea className="h-[calc(100vh-340px)]">
                 <div className="p-4 space-y-4">
