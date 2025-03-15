@@ -7,6 +7,6 @@ const router = Router();
 
 // router.get("/", protectRoute, getAllUsers);
 router.get("/", getAllUsers);
-router.get("/messages/:userId", getMessages);
+router.get("/messages/:userId", protectRoute, getMessages);
 
 export default router;

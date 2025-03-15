@@ -1,4 +1,5 @@
 import { User } from '../models/user.model.js';
+import { Message } from "../models/message.model.js";
 
 export const getAllUsers = async (req, res, next) => {
   try {
@@ -15,8 +16,12 @@ export const getAllUsers = async (req, res, next) => {
 
 export const getMessages = async (req, res, next) => {
   try {
-    const myId = req.auth.userId;
+    console.log("🚀 ~ getMessages ~ req.auth:", req.auth)
+    // const myId = req.auth.userId;
+    const myId = req.headers.authorization.userId;
+    console.log("🚀 ~ getMessages ~ myId:", myId)
     const { userId } = req.params;
+    console.log("🚀 ~ getMessages ~ userId:", userId)
 
     const messages = await Message.find({
       $or: [
@@ -27,6 +32,7 @@ export const getMessages = async (req, res, next) => {
 
     res.status(200).json(messages);
   } catch (error) {
+    console.log("🚀 ~ getMessages ~ error:", error)
     next(error);
   }
 };

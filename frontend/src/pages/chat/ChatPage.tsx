@@ -6,7 +6,7 @@ import UsersList from './components/UsersList';
 import ChatHeader from './components/ChatHeader';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Avatar, AvatarImage } from '@/components/ui/avatar';
-// import MessageInput from './components/MessageInput';
+import MessageInput from './components/MessageInput';
 
 const formatTime = (date: string) => {
   return new Date(date).toLocaleTimeString('en-US', {
@@ -25,7 +25,10 @@ const ChatPage = () => {
   }, [fetchUsers, user]);
 
   useEffect(() => {
-    if (selectedUser) fetchMessages(selectedUser.clerkId);
+    if (selectedUser) {
+      debugger;
+      fetchMessages(selectedUser.clerkId);
+    }
   }, [selectedUser, fetchMessages]);
 
   return (
@@ -75,7 +78,7 @@ const ChatPage = () => {
                 </div>
               </ScrollArea>
               MessageInput
-              {/* <MessageInput /> */}
+              <MessageInput />
             </>
           ) : (
             <NoConversationPlaceholder />

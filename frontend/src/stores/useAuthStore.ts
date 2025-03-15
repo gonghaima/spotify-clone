@@ -21,7 +21,6 @@ export const useAuthStore = create<AuthStore>((set) => ({
     try {
       //   const { user } = useUser();
       console.log('🚀 ~ checkAdminStatus: ~ user:', userId);
-      debugger;
       const response = await axiosInstance.get('/admin/check', {
         headers: {
           userId: userId,
