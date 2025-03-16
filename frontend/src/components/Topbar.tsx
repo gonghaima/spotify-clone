@@ -8,7 +8,7 @@ import { useAuthStore } from '@/stores/useAuthStore.ts';
 
 const Topbar = () => {
   const { isAdmin } = useAuthStore();
-  console.log('🚀 ~ Topbar ~ isAdmin:', isAdmin);
+  // console.log('🚀 ~ Topbar ~ isAdmin:', isAdmin);
   return (
     <div
       className="flex items-center justify-between p-4 sticky top-0 bg-zinc-900/75 

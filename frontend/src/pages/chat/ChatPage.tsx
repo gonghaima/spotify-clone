@@ -77,7 +77,6 @@ const ChatPage = () => {
                   ))}
                 </div>
               </ScrollArea>
-              MessageInput
               <MessageInput />
             </>
           ) : (
