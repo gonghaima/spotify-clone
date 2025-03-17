@@ -2,10 +2,15 @@ import UsersListSkeleton from '@/components/skeletons/UsersListSkeleton';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useChatStore } from '@/stores/useChatStore';
+import { useUser } from '@clerk/clerk-react';
 
 const UsersList = () => {
-  const { users, selectedUser, isLoading, setSelectedUser, onlineUsers } =
+  let { users, selectedUser, isLoading, setSelectedUser, onlineUsers } =
     useChatStore();
+
+  const { user } = useUser();
+
+  users = users.filter((u) => u.clerkId !== user?.id);
 
   return (
     <div className="border-r border-zinc-800">
