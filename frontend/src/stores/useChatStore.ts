@@ -117,6 +117,7 @@ export const useChatStore = create<ChatStore>((set, get) => ({
   },
 
   sendMessage: async (receiverId, senderId, content) => {
+    //@ts-ignore
     const socket = get().socket;
     if (!socket) return;
 

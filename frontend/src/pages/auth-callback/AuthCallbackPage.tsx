@@ -5,7 +5,7 @@ import { Loader } from 'lucide-react';
 import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function AuthCallbackPage({}: Props) {
+export default function AuthCallbackPage() {
   const { isLoaded, user } = useUser();
   const navigate = useNavigate();
   const syncAttempted = useRef(false);
