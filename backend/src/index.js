@@ -13,6 +13,8 @@ import fileUpload from 'express-fileupload';
 import path from 'path';
 import cors from 'cors';
 import { createServer } from 'http';
+import fs from "fs";
+import cron from 'node-cron';
 import { initializeSocket } from './lib/socket.js';
 
 dotenv.config();
@@ -29,9 +31,7 @@ const PORT = process.env.PORT;
 
 app.use(
   cors({
-    origin: [
-      'http://localhost:3000',
-    ],
+    origin: ['http://localhost:3000'],
     credentials: true,
   })
 );
@@ -66,6 +66,22 @@ app.use(
   })
 );
 
+// cron jobs
+const tempDir = path.join(process.cwd(), 'tmp');
+cron.schedule('0 * * * *', () => {
+  if (fs.existsSync(tempDir)) {
+    fs.readdir(tempDir, (err, files) => {
+      if (err) {
+        console.log('error', err);
+        return;
+      }
+      for (const file of files) {
+        fs.unlink(path.join(tempDir, file), (err) => {});
+      }
+    });
+  }
+});
+
 app.use('/api/users', userRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
@@ -73,13 +89,12 @@ app.use('/api/songs', songRoutes);
 app.use('/api/albums', albumRoutes);
 app.use('/api/stats', statsRoutes);
 
-if (process.env.NODE_ENV === "production") {
-	app.use(express.static(path.join(__dirname, "../frontend/dist")));
-	app.get("*", (req, res) => {
-		res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
-	});
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '../frontend', 'dist', 'index.html'));
+  });
 }
-
 
 // error handler
 app.use((err, req, res, next) => {
